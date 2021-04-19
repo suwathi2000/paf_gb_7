@@ -31,8 +31,7 @@ public class ProjectResource {
 		obj.setProject_id(project_id);
 		return ProjectController.getInstance().Search(obj);
 	}
-
-	@POST
+    @POST
 	@Path("Project")
 	public String saveProject(Project obj) throws Exception {
 		ProjectController.getInstance().Save(obj);
@@ -53,5 +52,5 @@ public class ProjectResource {
 		obj.setProject_id(project_id);
 		ProjectController.getInstance().Delete(obj);
 		return "Project Deleted";
-	}
+	}	
 }
