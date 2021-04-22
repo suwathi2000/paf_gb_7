@@ -39,7 +39,7 @@ public class UserController {
 		con.aud("DELETE FROM user WHERE user_id = '" + data.getUser_id() + "'");
 	}
 
-	ublic List<User> SearchAll() throws Exception {
+	public List<User> SearchAll() throws Exception {
 		List<User> objList = new ArrayList<User>();
 		con.getConnection();
 		ResultSet rset = con.srh("SELECT * FROM user");

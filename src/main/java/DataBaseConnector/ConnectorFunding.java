@@ -22,7 +22,7 @@ public class ConnectorFunding {
 	public Connection getConnection() throws Exception {
 		if (con == null) {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_funding", "root", "Roshan@15528");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_funding", "root", "");
 		}
 		return con;
 	}
