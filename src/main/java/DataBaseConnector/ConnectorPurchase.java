@@ -22,7 +22,7 @@ public class ConnectorPurchase{
 	public Connection getConnection() throws Exception {
 		if (con == null) {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_purchase", "root", "");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_purchase_7", "root", "");
 		}
 		return con;
 	}

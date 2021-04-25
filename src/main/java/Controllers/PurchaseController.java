@@ -1,7 +1,11 @@
 package Controllers;
 
 import Models.Purchase;
+import DataBaseConnector.ConnectorCart;
+import DataBaseConnector.ConnectorProject;
 import DataBaseConnector.ConnectorPurchase;
+import DataBaseConnector.ConnectorUser;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +13,10 @@ import java.util.List;
 public class PurchaseController {
 
 	ConnectorPurchase con = ConnectorPurchase.getInstance();
-
+	ConnectorProject con_p = ConnectorProject.getInstance();
+	ConnectorUser con_u=ConnectorUser.getInstance();
+	ConnectorCart con_c=ConnectorCart.getInstance();
+	
 	private PurchaseController() {
 	}
 
@@ -19,22 +26,64 @@ public class PurchaseController {
 		return obj;
 	}
 
-	public void Save(Purchase data) throws Exception {
-		con.getConnection();
-		con.aud("INSERT INTO purchase(discount,date_time,user_user_id) values ('" + data.getDiscount() + "','"
-				+ data.getDate_time() + "','" + data.getUser_user_id() + "') ");
+	public int Save(Purchase data) throws Exception {
+		con_p.getConnection();
+		con_u.getConnection();
+		con_c.getConnection();
+		ResultSet rset_user = con_u.srh("SELECT * FROM user WHERE user_id   = '" + data.getUser_user_id() + "'");
+		ResultSet rset = con_p.srh("SELECT * FROM project WHERE project_id  = '" + data.getProduct_id() + "'");
+		ResultSet rs_cart = con_c.srh("SELECT * FROM cart WHERE cart_id  = '" + data.getCart_id() + "'");
+		
+		if (rset.next() && rset_user.next() && rs_cart.next()) {
+			con.getConnection();
+			con.aud("INSERT INTO purchase(purchase,discount,date_time,user_user_id,product_id,cart_id) values ('" + data.getPurchase_id() + "','" + data.getDiscount() + "','"
+					+ data.getDate_time() + "','" + data.getUser_user_id() + "','" + data.getProduct_id() + "'"
+							+ ",'" + data.getCart_id() + "') ");
+			return 1;
+		}else {
+			return 0;
+		}		
+		
 	}
 
-	public void Update(Purchase data) throws Exception {
-		con.getConnection();
-		con.aud("UPDATE purchase SET discount  = '" + data.getDiscount() + "',date_time  = '" + data.getDate_time()
-				+ "',user_user_id  = '" + data.getUser_user_id() + "' WHERE purchase_id = '" + data.getPurchase_id()
-				+ "'");
+	public int Update(Purchase data) throws Exception {
+		con_p.getConnection();
+		con_u.getConnection();
+		con_c.getConnection();
+		ResultSet rset_user = con_u.srh("SELECT * FROM user WHERE user_id   = '" + data.getUser_user_id() + "'");
+		ResultSet rset = con_p.srh("SELECT * FROM project WHERE project_id  = '" + data.getProduct_id() + "'");
+		ResultSet rs_cart = con_c.srh("SELECT * FROM cart WHERE cart_id  = '" + data.getCart_id() + "'");
+		
+		if (rset.next() && rset_user.next() && rs_cart.next()) {
+			con.getConnection();
+			con.aud("UPDATE purchase SET discount  = '" + data.getDiscount() + "',date_time  = '" + data.getDate_time()
+					+ "',user_user_id  = '" + data.getUser_user_id() + "',product_id  = '" + data.getProduct_id() + "'"
+							+ ",cart_id  = '" + data.getCart_id() + "' WHERE purchase_id = '" + data.getPurchase_id()
+					+ "'");
+			return 1;
+		}else {
+			return 0;
+		}
+		
+		
 	}
 
-	public void Delete(Purchase data) throws Exception {
-		con.getConnection();
-		con.aud("DELETE FROM purchase WHERE purchase_id = '" + data.getPurchase_id() + "'");
+	public int Delete(Purchase data) throws Exception {
+		con_p.getConnection();
+		con_u.getConnection();
+		con_c.getConnection();
+		ResultSet rset_user = con_u.srh("SELECT * FROM user WHERE user_id   = '" + data.getUser_user_id() + "'");
+		ResultSet rset = con_p.srh("SELECT * FROM project WHERE project_id  = '" + data.getProduct_id() + "'");
+		ResultSet rs_cart = con_c.srh("SELECT * FROM cart WHERE cart_id  = '" + data.getCart_id() + "'");
+		
+		if (rset.next() && rset_user.next() && rs_cart.next()) {
+			con.getConnection();
+			con.aud("DELETE FROM purchase WHERE purchase_id = '" + data.getPurchase_id() + "'");
+			return 1;
+		}else {
+			return 0;
+		}
+		
 	}
 
 	public List<Purchase> SearchAll() throws Exception {
@@ -47,6 +96,8 @@ public class PurchaseController {
 			obj.setDiscount(rset.getDouble(2));
 			obj.setDate_time(rset.getString(3));
 			obj.setUser_user_id(rset.getInt(4));
+			obj.setProduct_id(rset.getInt(5));
+			obj.setCart_id(rset.getInt(6));
 			objList.add(obj);
 		}
 
@@ -63,6 +114,8 @@ public class PurchaseController {
 			obj.setDiscount(rset.getDouble(2));
 			obj.setDate_time(rset.getString(3));
 			obj.setUser_user_id(rset.getInt(4));
+			obj.setProduct_id(rset.getInt(5));
+			obj.setCart_id(rset.getInt(6));
 			objList.add(obj);
 		}
 

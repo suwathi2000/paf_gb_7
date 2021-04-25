@@ -9,6 +9,8 @@ public class Purchase {
 	private double discount;
 	private String date_time;
 	private int user_user_id;
+	private int product_id;
+	private int cart_id;
 
 	public Purchase() {
 	}
@@ -17,11 +19,29 @@ public class Purchase {
 		this.purchase_id = purchase_id;
 	}
 
-	public Purchase(int purchase_id, double discount, String date_time, int user_user_id) {
+	public Purchase(int purchase_id, double discount, String date_time, int user_user_id,int product_id,int cart_id) {
 		this.purchase_id = purchase_id;
 		this.discount = discount;
 		this.date_time = date_time;
 		this.user_user_id = user_user_id;
+		this.product_id = product_id;
+		this.cart_id=cart_id;
+	}
+
+	public int getProduct_id() {
+		return product_id;
+	}
+
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
+	}
+
+	public int getCart_id() {
+		return cart_id;
+	}
+
+	public void setCart_id(int cart_id) {
+		this.cart_id = cart_id;
 	}
 
 	public int getPurchase_id() {
