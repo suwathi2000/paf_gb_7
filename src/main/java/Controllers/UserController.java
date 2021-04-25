@@ -22,16 +22,16 @@ public class UserController {
 
 	public void Save(User data) throws Exception {
 		con.getConnection();
-		con.aud("INSERT INTO user(full_name,user_type,username,password,date_time) values ('" + data.getFull_name()
+		con.aud("INSERT INTO user(full_name,user_type,username,password,date_time,role_id) values ('" + data.getFull_name()
 				+ "','" + data.getUser_type() + "','" + data.getUsername() + "','" + data.getPassword() + "','"
-				+ data.getDate_time() + "') ");
+				+ data.getDate_time() + "','"+ data.getRole_id() + "') ");
 	}
 
 	public void Update(User data) throws Exception {
 		con.getConnection();
 		con.aud("UPDATE user SET full_name  = '" + data.getFull_name() + "',user_type  = '" + data.getUser_type()
 				+ "',username  = '" + data.getUsername() + "',password  = '" + data.getPassword() + "',date_time  = '"
-				+ data.getDate_time() + "' WHERE user_id = '" + data.getUser_id() + "'");
+				+ data.getDate_time() + "',role_id  = '" +data.getRole_id() + "' WHERE user_id = '" + data.getUser_id() + "'");
 	}
 
 	public void Delete(User data) throws Exception {
@@ -51,6 +51,7 @@ public class UserController {
 			obj.setUsername(rset.getString(4));
 			obj.setPassword(rset.getString(5));
 			obj.setDate_time(rset.getString(6));
+			obj.setRole_id(rset.getInt(7));
 			objList.add(obj);
 		}
 
@@ -69,11 +70,11 @@ public class UserController {
 			obj.setUsername(rset.getString(4));
 			obj.setPassword(rset.getString(5));
 			obj.setDate_time(rset.getString(6));
+			obj.setRole_id(rset.getInt(7));
 			objList.add(obj);
 		}
 
 		return objList;
 	}
-
 
 }
