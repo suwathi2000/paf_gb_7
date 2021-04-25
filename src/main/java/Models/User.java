@@ -11,6 +11,7 @@ public class User {
 	private String username;
 	private String password;
 	private String date_time;
+	private int role_id;
 
 	public User() {
 	}
@@ -19,13 +20,22 @@ public class User {
 		this.user_id = user_id;
 	}
 
-	public User(int user_id, String full_name, String user_type, String username, String password, String date_time) {
+	public User(int user_id, String full_name, String user_type, String username, String password, String date_time,int role_id) {
 		this.user_id = user_id;
 		this.full_name = full_name;
 		this.user_type = user_type;
 		this.username = username;
 		this.password = password;
 		this.date_time = date_time;
+		this.role_id = role_id;
+	}
+
+	public int getRole_id() {
+		return role_id;
+	}
+
+	public void setRole_id(int role_id) {
+		this.role_id = role_id;
 	}
 
 	public int getUser_id() {
