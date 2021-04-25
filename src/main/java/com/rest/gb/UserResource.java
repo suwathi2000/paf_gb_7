@@ -1,6 +1,8 @@
-package com.rest.gb;
+ package com.rest.gb;
 
+import Controllers.CartController;
 import Controllers.UserController;
+import Controllers.Usercheck;
 import Models.User;
 
 import java.util.List;
@@ -15,7 +17,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("UserResources")
 public class UserResource {
-
+	
 	@GET
 	@Path("Users")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
@@ -49,9 +51,22 @@ public class UserResource {
 	@DELETE
 	@Path("User/{user_id}")
 	public String deleteUser(@PathParam("user_id") int user_id) throws Exception {
+		Usercheck uc=new Usercheck();
 		User obj = new User();
 		obj.setUser_id(user_id);
-		UserController.getInstance().Delete(obj);
-		return "User Deleted";
+		int role_id=uc.checkUser(obj.getUser_id());
+		
+		if(role_id == 2) {
+			System.err.println("user");
+			UserController.getInstance().Delete(obj);
+			return "User Deleted";
+		}else {
+			System.err.println("no such a user role");
+			return "Permission not granted for the User";
+		}
+		
 	}
+		
+		
+	
 }

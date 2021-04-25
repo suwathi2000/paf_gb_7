@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class ConnectorFunding {
+public class ConnectorPurchase{
 
-	private ConnectorFunding() {
+	private ConnectorPurchase() {
 	}
 
-	private static final ConnectorFunding obj = new ConnectorFunding();
+	private static final ConnectorPurchase obj = new ConnectorPurchase();
 
-	public static ConnectorFunding getInstance() {
+	public static ConnectorPurchase getInstance() {
 		return obj;
 	}
 
@@ -22,7 +22,7 @@ public class ConnectorFunding {
 	public Connection getConnection() throws Exception {
 		if (con == null) {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_funding_7?serverTimezone=UTC", "root", "");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_purchase_7", "root", "");
 		}
 		return con;
 	}

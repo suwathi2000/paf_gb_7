@@ -22,7 +22,8 @@ public class ConnectorUser{
 	public Connection getConnection() throws Exception {
 		if (con == null) {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_user", "root", "");
+//			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_user_7", "root", "");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_user_7?serverTimezone=UTC", "root", "");
 		}
 		return con;
 	}
