@@ -31,18 +31,29 @@ public class ProjectResource {
 		obj.setProject_id(project_id);
 		return ProjectController.getInstance().Search(obj);
 	}
-    @POST
+
+	@POST
 	@Path("Project")
 	public String saveProject(Project obj) throws Exception {
-		ProjectController.getInstance().Save(obj);
-		return "Project Saved";
+		int x = ProjectController.getInstance().Save(obj);
+		if(x==1) {
+			return "Project Saved";
+		}else {
+			return "No Funding ID Found";
+		}
+		
 	}
 
 	@PUT
 	@Path("Project")
 	public String updateProject(Project obj) throws Exception {
-		ProjectController.getInstance().Update(obj);
-		return "Project Updated";
+		int x =ProjectController.getInstance().Update(obj);
+		if(x==1) {
+			return "Project Updated";
+		}else {
+			return "No Funding ID Found update failed";
+		}
+//		return "Project Updated";
 	}
 
 	@DELETE
@@ -52,5 +63,5 @@ public class ProjectResource {
 		obj.setProject_id(project_id);
 		ProjectController.getInstance().Delete(obj);
 		return "Project Deleted";
-	}	
+	}
 }
