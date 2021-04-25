@@ -8,6 +8,15 @@ public class Cart {
 	private double discount;
 	private String sub_total;
 	private int project_project_id;
+	private int user_id;
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 
 	public Cart() {
 	}
@@ -16,11 +25,12 @@ public class Cart {
 		this.cart_id = cart_id;
 	}
 
-	public Cart(int cart_id, double discount, String sub_total, int project_project_id) {
+	public Cart(int cart_id, double discount, String sub_total, int project_project_id,int user_id) {
 		this.cart_id = cart_id;
 		this.discount = discount;
 		this.sub_total = sub_total;
 		this.project_project_id = project_project_id;
+		this.user_id = user_id;
 	}
 
 	public int getCart_id() {
