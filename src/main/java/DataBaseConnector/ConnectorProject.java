@@ -22,7 +22,7 @@ public class ConnectorProject{
 	public Connection getConnection() throws Exception {
 		if (con == null) {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_project", "root", "");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_rest_project_7?serverTimezone=UTC", "root", "");
 		}
 		return con;
 	}

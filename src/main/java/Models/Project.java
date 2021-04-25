@@ -11,7 +11,8 @@ public class Project {
 	private String price;
 	private String details;
 	private String date_time;
-
+	private int funding_id;
+	
 	public Project() {
 	}
 
@@ -19,13 +20,14 @@ public class Project {
 		this.project_id = project_id;
 	}
 
-	public Project(int project_id, String category, String topic, String price, String details, String date_time) {
+	public Project(int project_id, String category, String topic, String price, String details, String date_time,int funding_id) {
 		this.project_id = project_id;
 		this.category = category;
 		this.topic = topic;
 		this.price = price;
 		this.details = details;
 		this.date_time = date_time;
+		this.funding_id=funding_id;
 	}
 
 	public int getProject_id() {
@@ -74,6 +76,14 @@ public class Project {
 
 	public void setDate_time(String date_time) {
 		this.date_time = date_time;
+	}
+	
+	public int getFunding_id() {
+		return funding_id;
+	}
+
+	public void setFunding_id(int funding_id) {
+		this.funding_id = funding_id;
 	}
 
 }
