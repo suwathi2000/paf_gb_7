@@ -35,15 +35,25 @@ public class PurchaseResource {
 	@POST
 	@Path("Purchase")
 	public String savePurchase(Purchase obj) throws Exception {
-		PurchaseController.getInstance().Save(obj);
-		return "Purchase Saved";
+		int x=PurchaseController.getInstance().Save(obj);
+		if(x==1) {
+			return "Purchase Saved";
+		}else {
+			return "Purchase not Save";
+		}
+		
 	}
 
 	@PUT
 	@Path("Purchase")
 	public String updatePurchase(Purchase obj) throws Exception {
-		PurchaseController.getInstance().Update(obj);
-		return "Purchase Updated";
+		int x=PurchaseController.getInstance().Update(obj);
+		if(x==1) {
+			return "Purchase Updated";
+		}else {
+			return "Purchase not Updated";
+		}
+	
 	}
 
 	@DELETE
@@ -51,7 +61,12 @@ public class PurchaseResource {
 	public String deletePurchase(@PathParam("purchase_id") int purchase_id) throws Exception {
 		Purchase obj = new Purchase();
 		obj.setPurchase_id(purchase_id);
-		PurchaseController.getInstance().Delete(obj);
-		return "Purchase Deleted";
+		int x=PurchaseController.getInstance().Delete(obj);
+		if(x==1) {
+			return "Purchase Deleted";
+		}else {
+			return "Purchase not Deleted";
+		}
+		
 	}
 }
